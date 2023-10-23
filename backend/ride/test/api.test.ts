@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.validateStatus = function(){
+axios.defaults.validateStatus = function () {
     return true;
 }
 
@@ -27,4 +27,20 @@ test("Se a distância for inválida deve lançar um erro", async function () {
     const output = response.data;
 
     expect(output).toBe("Distância inválida");
+});
+
+test("Deve cadastrar o passageiro", async function () {
+    const input = {
+        name: "",
+        email: "",
+        document: ""
+    };
+    const responseCreatePassenger = await axios.post("http://localhost:3000/passengers", input);
+    const outputCreatePassenger = responseCreatePassenger.data;
+    expect(outputCreatePassenger.passengerId).toBeDefined();
+    const responseGetPassenger = await axios.get(`http://localhost:3000/passengers/${outputCreatePassenger.passengerId}`);
+    const outputGetPassenger = responseGetPassenger.data;
+    expect(outputGetPassenger.name).toBe("John Doe");
+    expect(outputGetPassenger.email).toBe("john.doe@gmail.com");
+    expect(outputGetPassenger.document).toBe("83432616074");
 });
