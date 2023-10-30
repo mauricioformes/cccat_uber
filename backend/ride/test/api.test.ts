@@ -82,7 +82,7 @@ test("Deve cadastrar o motorista", async function () {
 
 });
 
-test.only("Não deve cadastrar o motorista com CPF inválido", async function () {
+test("Não deve cadastrar o motorista com CPF inválido", async function () {
     const input = {
         name: "John Doe",
         email: "john.doe@gmail.com",
