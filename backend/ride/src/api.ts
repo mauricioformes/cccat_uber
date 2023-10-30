@@ -4,6 +4,8 @@ import CreatePassenger from "./application/usecase/CreatePassenger";
 import CreateDriver from "./application/usecase/CreateDriver";
 import GetPassenger from "./application/usecase/GetPassenger";
 import GetDriver from "./application/usecase/GetDriver";
+import DriverRespositoryDatabase from "./infra/repository/DriverRepositoryDatabase";
+import PassengerRespositoryDatabase from "./infra/repository/PassengerRepositoryDatabase";
 
 const app = express();
 app.use(express.json());
@@ -21,7 +23,7 @@ app.post("/calculate_ride", async function (req, res) {
 
 app.post("/passengers", async function (req, res) {
     try {
-        const usecase = new CreatePassenger();
+        const usecase = new CreatePassenger(new PassengerRespositoryDatabase());
         const output = await usecase.execute(req.body);
         res.json(output);
     } catch (e: any) {
@@ -31,14 +33,14 @@ app.post("/passengers", async function (req, res) {
 });
 
 app.get("/passengers/:passengerId", async function (req, res) {
-    const usecase = new GetPassenger();
+    const usecase = new GetPassenger( new PassengerRespositoryDatabase());
     const output = usecase.execute({ passengerId: req.params.passengerId });
     res.json(output);
 });
 
 app.post("/drivers", async function (req, res) {
     try {
-        const usecase = new CreateDriver();
+        const usecase = new CreateDriver(new DriverRespositoryDatabase());
         const output = await usecase.execute(req.body);
         res.json(output);
     } catch (e: any) {
@@ -48,7 +50,7 @@ app.post("/drivers", async function (req, res) {
 });
 
 app.get("/drivers/:driverId", async function (req, res) {
-    const usecase = new GetDriver();
+    const usecase = new GetDriver(new DriverRespositoryDatabase());
     const output = await usecase.execute({ driverId: req.params.driverId });
     res.json(output);
 });

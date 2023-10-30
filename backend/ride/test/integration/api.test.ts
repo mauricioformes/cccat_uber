@@ -74,7 +74,7 @@ test("Deve cadastrar o motorista", async function () {
         name: "John Doe",
         email: "john.doe@gmail.com",
         document: "83432616074",
-        carPlate: "AAA999"
+        carPlate: "AAA9999"
     };
     const responseCreateDriver = await axios.post("http://localhost:3000/drivers", input);
     const outputCreateDriver = responseCreateDriver.data;

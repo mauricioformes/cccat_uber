@@ -1,19 +1,17 @@
-import { validate } from "../../CpfValidator";
-import DriverRespository from "../../infra/repository/DriverRepositoryDatabase";
+import Driver from "../../domain/Driver";
+import DriverRespository from "../repository/DriverRepository";
 
 export default class CreateDriver {
-    constructor() {
+    constructor(readonly driverRepository: DriverRespository) {
 
     }
 
     async execute(input: Input): Promise<Output> {
-        const driverId = crypto.randomUUID();
-        if (!validate(input.document)) throw new Error("CPF Inválido");
-        const driverRepository = new DriverRespository();
-        await driverRepository.save(Object.assign(input, {driverId}));
-      
+        const driver = Driver.create(input.name, input.email, input.document, input.carPlate)
+        await this.driverRepository.save(driver);
+
         return {
-            driverId
+            driverId: driver.driverId
         };
     }
 }

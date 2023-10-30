@@ -1,11 +1,11 @@
 // @ts-nocheck
 export default class Cpf {
-    value: string;
-    constructor(value: string) {
+    value: String;
+    constructor(value: String) {
         if (!this.validate(value)) throw new Error("CPF Inválido");
         this.value = value;
     }
-    private validate(cpf: string) {
+    private validate(cpf: String) {
         cpf = this.clean(cpf);
         if (this.isValidLength(cpf)) return false;
         if (this.hasAllDigitsEqual(cpf)) return false;
@@ -15,20 +15,20 @@ export default class Cpf {
     }
 
     // @ts-nocheck
-    private clean(cpf: string) {
+    private clean(cpf: String) {
         return cpf.replace(/\D/g, "");
     }
 
-    private isValidLength(cpf: string) {
+    private isValidLength(cpf: String) {
         return cpf.length !== 11;
     }
 
-    private hasAllDigitsEqual(cpf: string) {
+    private hasAllDigitsEqual(cpf: String) {
         const [firstDigit] = cpf
         return [...cpf].every(digit => digit === firstDigit);
     }
 
-    private calculateDigit(cpf: string, factor: number) {
+    private calculateDigit(cpf: String, factor: Number) {
         let total = 0;
         for (const digit of cpf) {
             if (factor > 1) total += parseInt(digit) * factor--;
@@ -37,7 +37,7 @@ export default class Cpf {
         return (rest < 2) ? 0 : 11 - rest;
     }
 
-    private extractCheckDigit(cpf: string) {
+    private extractCheckDigit(cpf: String) {
         return cpf.slice(9);
     }
 }
