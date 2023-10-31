@@ -13,7 +13,6 @@ app.post("/calculate_ride", async function (req, res) {
     try {
         const usecase = new CalculateRide();
         const output = await usecase.execute({ segments: req.body.segments });
-        console.log(output);
         res.json(output);
     } catch (e: any) {
         res.status(422).send(e.message);
@@ -33,8 +32,8 @@ app.post("/passengers", async function (req, res) {
 });
 
 app.get("/passengers/:passengerId", async function (req, res) {
-    const usecase = new GetPassenger( new PassengerRespositoryDatabase());
-    const output = usecase.execute({ passengerId: req.params.passengerId });
+    const usecase = new GetPassenger( new PassengerRespositoryDatabase());    
+    const output = await usecase.execute({ passengerId: req.params.passengerId });
     res.json(output);
 });
 
@@ -55,4 +54,4 @@ app.get("/drivers/:driverId", async function (req, res) {
     res.json(output);
 });
 
-app.listen(3000);
+app.listen(8080);
