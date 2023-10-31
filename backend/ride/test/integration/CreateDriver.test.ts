@@ -14,16 +14,16 @@ test("Deve cadastrar o motorista", async function () {
         async get(driverId: string): Promise<any> {
             return {
                 driver_id: "",
-                name: "John Doe",
-                email: "john.doe@gmail.com",
+                name: "Maurício Formes - MOTORISTA",
+                email: "mauricioformes@hotmail.com",
                 document: "83432616074",
                 car_plate: "AAA9999"
             }
         }
     }
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Formes - MOTORISTA",
+        email: "mauricioformes@hotmail.com",
         document: "83432616074",
         carPlate: "AAA9999"
     };
@@ -39,12 +39,12 @@ test("Deve obter o motorista", async function () {
 
         },
         async get(driverId: string): Promise<any> {
-            return Driver.create("John Doe", "john.doe@gmail.com", "83432616074", "AAA9999");
+            return Driver.create("Maurício Formes - MOTORISTA", "mauricioformes@hotmail.com", "83432616074", "AAA9999");
         }
     }
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Formes - MOTORISTA",
+        email: "mauricioformes@hotmail.com",
         document: "83432616074",
         carPlate: "AAA9999"
     };
@@ -52,8 +52,8 @@ test("Deve obter o motorista", async function () {
     const outputCreateDriver = await responseCreateDriver.execute(input);
     const responseGetDriver = new GetDriver(driverRepository);
     const outputGetDriver = await responseGetDriver.execute({ driverId: outputCreateDriver.driverId });
-    expect(outputGetDriver.name).toBe("John Doe");
-    expect(outputGetDriver.email).toBe("john.doe@gmail.com");
+    expect(outputGetDriver.name).toBe("Maurício Formes - MOTORISTA");
+    expect(outputGetDriver.email).toBe("mauricioformes@hotmail.com");
     expect(outputGetDriver.document).toBe("83432616074");
     expect(outputGetDriver.carPlate).toBe("AAA9999");
 });
@@ -62,8 +62,8 @@ test("Deve obter o motorista", async function () {
 // ESSE TESTE DEPENDE DO BANCO DE DADOS, SE A TABELA OU O BANCO ESTIVEREM INDISPONÍVEIS IRÁ QUEBRAR
 test("Deve obter o motorista", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Formes - MOTORISTA",
+        email: "mauricioformes@hotmail.com",
         document: "83432616074",
         carPlate: "AAA9999"
     };
@@ -71,8 +71,8 @@ test("Deve obter o motorista", async function () {
     const outputCreateDriver = await responseCreateDriver.execute(input);
     const responseGetDriver = new GetDriver(new DriverRespositoryDatabase());
     const outputGetDriver = await responseGetDriver.execute({ driverId: outputCreateDriver.driverId });
-    expect(outputGetDriver.name).toBe("John Doe");
-    expect(outputGetDriver.email).toBe("john.doe@gmail.com");
+    expect(outputGetDriver.name).toBe("Maurício Formes - MOTORISTA");
+    expect(outputGetDriver.email).toBe("mauricioformes@hotmail.com");
     expect(outputGetDriver.document).toBe("83432616074");
     expect(outputGetDriver.carPlate).toBe("AAA9999");
 });

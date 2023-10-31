@@ -31,8 +31,8 @@ test("Se a distância for inválida deve lançar um erro", async function () {
 
 test("Deve cadastrar o passageiro", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Pires Formes",
+        email: "mauriciformes@hotmail.com",
         document: "83432616074"
     };
     const responseCreatePassenger = await axios.post("http://localhost:8080/passengers", input);
@@ -43,8 +43,8 @@ test("Deve cadastrar o passageiro", async function () {
 
 test("Não deve cadastrar o passageiro com CPF inválido", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Pires Formes",
+        email: "mauriciformes@hotmail.com",
         document: "83432616076"
     };
     const response = await axios.post("http://localhost:8080/passengers", input);
@@ -56,8 +56,8 @@ test("Não deve cadastrar o passageiro com CPF inválido", async function () {
 
 test("Deve obter o passageiro", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Pires Formes",
+        email: "mauriciformes@hotmail.com",
         document: "83432616074"
     };
     const responseCreatePassenger = await axios.post("http://localhost:8080/passengers", input);
@@ -65,16 +65,16 @@ test("Deve obter o passageiro", async function () {
     const responseGetPassenger = await axios.get(`http://localhost:8080/passengers/${outputCreatePassenger.passengerId}`);
     const outputGetPassenger = responseGetPassenger.data;
     console.log(responseGetPassenger);
-    expect(outputGetPassenger.name).toBe("John Doe");
-    expect(outputGetPassenger.email).toBe("john.doe@gmail.com");
+    expect(outputGetPassenger.name).toBe("Maurício Pires Formes");
+    expect(outputGetPassenger.email).toBe("mauriciformes@hotmail.com");
     expect(outputGetPassenger.document).toBe("83432616074");
 });
 
 
 test("Deve cadastrar o motorista", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Pires Formes",
+        email: "mauriciformes@hotmail.com",
         document: "83432616074",
         carPlate: "AAA9999"
     };
@@ -86,8 +86,8 @@ test("Deve cadastrar o motorista", async function () {
 
 test("Não deve cadastrar o motorista com CPF inválido", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Pires Formes",
+        email: "mauriciformes@hotmail.com",
         document: "83432616076",
         carPlate: "AAA9999"
     };
@@ -100,8 +100,8 @@ test("Não deve cadastrar o motorista com CPF inválido", async function () {
 
 test("Deve obter o motorista", async function () {
     const input = {
-        name: "John Doe",
-        email: "john.doe@gmail.com",
+        name: "Maurício Pires Formes",
+        email: "mauriciformes@hotmail.com",
         document: "83432616074",
         carPlate: "AAA9999"
     };
@@ -109,8 +109,8 @@ test("Deve obter o motorista", async function () {
     const outputCreateDriver = responseCreateDriver.data;
     const responseGetDriver = await axios.get(`http://localhost:8080/drivers/${outputCreateDriver.driverId}`);
     const outputGetDriver = responseGetDriver.data;
-    expect(outputGetDriver.name).toBe("John Doe");
-    expect(outputGetDriver.email).toBe("john.doe@gmail.com");
+    expect(outputGetDriver.name).toBe("Maurício Pires Formes");
+    expect(outputGetDriver.email).toBe("mauriciformes@hotmail.com");
     expect(outputGetDriver.document).toBe("83432616074");
     expect(outputGetDriver.carPlate).toBe("AAA9999");
 });
