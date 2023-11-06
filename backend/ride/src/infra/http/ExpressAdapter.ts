@@ -1,6 +1,7 @@
 import express from "express";
 import HttpServer from "./HttpServer";
 
+// Frameworks and Drivers
 export default class ExpressAdapter implements HttpServer {
     app: any;
     constructor() {
@@ -8,7 +9,7 @@ export default class ExpressAdapter implements HttpServer {
         this.app.use(express.json());
     }
     on(method: string, url: string, callback: Function): void {
-        this.app[method](url, async function (req: any, res: any) {
+        this.app[method](url.replace(/\{|\}/g, ""), async function (req: any, res: any) {
             try {
                 const output = await callback(req.params, req.body);
                 res.json(output);
