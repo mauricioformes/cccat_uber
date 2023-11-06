@@ -12,8 +12,6 @@ test("Deve fazer o cálculo do preço de uma corrida", async function () {
     };
     const response = await axios.post("http://localhost:8080/calculate_ride", input);
     const output = response.data;
-    //console.log(output);
-
     expect(output.price).toBe(21);
 });
 
@@ -64,7 +62,6 @@ test("Deve obter o passageiro", async function () {
     const outputCreatePassenger = responseCreatePassenger.data;    
     const responseGetPassenger = await axios.get(`http://localhost:8080/passengers/${outputCreatePassenger.passengerId}`);
     const outputGetPassenger = responseGetPassenger.data;
-    console.log(responseGetPassenger);
     expect(outputGetPassenger.name).toBe("Maurício Pires Formes");
     expect(outputGetPassenger.email).toBe("mauriciformes@hotmail.com");
     expect(outputGetPassenger.document).toBe("83432616074");

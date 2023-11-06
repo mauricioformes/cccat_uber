@@ -1,10 +1,10 @@
 import axios from "axios";
 import CreateDriver from "../../src/application/usecase/CreateDriver";
 import GetDriver from "../../src/application/usecase/GetDriver";
-import DriverRespository from "../../src/infra/repository/DriverRepositoryDatabase";
-import sinon from "sinon";
+import DriverRespository from "../../src/application/repository/DriverRepository";
 import DriverRespositoryDatabase from "../../src/infra/repository/DriverRepositoryDatabase";
 import Driver from "../../src/domain/Driver";
+import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 
 test("Deve cadastrar o motorista", async function () {
     const driverRepository: DriverRespository = {
@@ -33,6 +33,7 @@ test("Deve cadastrar o motorista", async function () {
 
 });
 
+// broad integration test
 test("Deve obter o motorista", async function () {
     const driverRepository: DriverRespository = {
         async save(driver: any): Promise<void> {
@@ -67,12 +68,14 @@ test("Deve obter o motorista", async function () {
         document: "83432616074",
         carPlate: "AAA9999"
     };
-    const responseCreateDriver = new CreateDriver(new DriverRespositoryDatabase());
+    const connection = new PgPromiseAdapter();
+    const responseCreateDriver = new CreateDriver(new DriverRespositoryDatabase(connection));
     const outputCreateDriver = await responseCreateDriver.execute(input);
-    const responseGetDriver = new GetDriver(new DriverRespositoryDatabase());
+    const responseGetDriver = new GetDriver(new DriverRespositoryDatabase(connection));
     const outputGetDriver = await responseGetDriver.execute({ driverId: outputCreateDriver.driverId });
     expect(outputGetDriver.name).toBe("Maurício Formes - MOTORISTA");
     expect(outputGetDriver.email).toBe("mauricioformes@hotmail.com");
     expect(outputGetDriver.document).toBe("83432616074");
     expect(outputGetDriver.carPlate).toBe("AAA9999");
+    await connection.close();
 });

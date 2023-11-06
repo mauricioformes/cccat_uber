@@ -1,4 +1,4 @@
-import DriverRespository from "../../infra/repository/DriverRepositoryDatabase";
+import DriverRespository from "../../application/repository/DriverRepository";
 
 export default class GetDriver {
     constructor(readonly driverRepository: DriverRespository) {

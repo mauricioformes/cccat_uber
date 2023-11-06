@@ -1,4 +1,5 @@
 import CreatePassenger from "./application/usecase/CreatePassenger";
+import PgPromiseAdapter from "./infra/database/PgPromiseAdapter";
 import PassengerRespositoryDatabase from "./infra/repository/PassengerRepositoryDatabase";
 
 process.stdin.on("data", async function (chunk) {
@@ -6,7 +7,8 @@ process.stdin.on("data", async function (chunk) {
     if (command.startsWith("create-passenger")) {
         try {
             const [name, email, document] = command.replace("create-passenger ", "").split(" ");
-            const usecase = new CreatePassenger( new PassengerRespositoryDatabase());
+            const connection = new PgPromiseAdapter();
+            const usecase = new CreatePassenger( new PassengerRespositoryDatabase(connection));
             const output = await usecase.execute({ name, email, document });
             console.log(output);
         } catch (e: any) {
