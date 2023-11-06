@@ -17,7 +17,7 @@ export default class MainController {
         ) {
 
         httpServer.on("post", "/calculate_ride", async function (params: any, body: any) {
-            const output = await calculateRide.execute({ segments: body.segments });
+            const output = await calculateRide.execute(body);
             return output;
         });
 
