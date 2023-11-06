@@ -1,4 +1,4 @@
-Projeto desenvolvido para estudo de NodeJS e Vue utilizando DDD, SOLID, Design Patterns e TDD.
+Projeto desenvolvido para estudo de NodeJS e Vue utilizando Clean Code, Clean Architecture, DDD, SOLID, Design Patterns e TDD.
 
 É um projeto simples que funciona da seguinte forma:
 
