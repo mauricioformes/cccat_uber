@@ -48,7 +48,7 @@ test("Deve iniciar uma corrida", async function () {
         date: new Date("2021-03-01T10:10:00")
     };
     const acceptRide = new AcceptRide(new RideRepositoryDatabase(connection));
-    acceptRide.execute(inputAcceptRide);
+    await acceptRide.execute(inputAcceptRide);
 
     const inputStartRide = {
         rideId: outputRequestRide.rideId,

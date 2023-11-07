@@ -8,6 +8,8 @@ import SundayFareCaltulatorHandler from "../fare/chain_of_responsability/SundayF
 import UUIDGenerator from "../identity/UUIDGenerator";
 import Position from "./Position";
 import { Segment } from "./Segment";
+import RideStatus from "./status/RideStatus";
+import RideStatusFactory from "./status/RideStatusFactory";
 
 export class Ride {
     positions: Position[];
@@ -17,13 +19,15 @@ export class Ride {
     acceptDate?: Date;
     startDate?: Date;
     endDate?: Date;
+    status: RideStatus;
 
-    constructor(readonly rideId: String, readonly passengerId: String, readonly from: Coord, readonly to: Coord, public status: String, readonly requestDate: Date) {
+    constructor(readonly rideId: String, readonly passengerId: String, readonly from: Coord, readonly to: Coord, status: String, readonly requestDate: Date) {
         this.positions = [];
         const overnightSundayFareCalculator = new OvernighSundayFareCaltulatorHandler();
         const sundayFareCalculator = new SundayFareCaltulatorHandler(overnightSundayFareCalculator);
         const overnightFareCalculator = new OvernighFareCaltulatorHandler(sundayFareCalculator);
         this.fareCalculator = new NormalFareCaltulatorHandler(overnightFareCalculator);
+        this.status = RideStatusFactory.create(this, status);
     }
 
     addPosition(lat: number, long: number, date: Date) {
@@ -37,29 +41,24 @@ export class Ride {
             if (!nextPosition) break;
             const distance = DistanceCalculator.calculate(position.coord, nextPosition.coord);
             const segment = new Segment(distance, nextPosition.date);
-            // const fareCalculator = FareCalculatorFactory.create(segment);
-            // price += fareCalculator.calculate(segment);
             price += this.fareCalculator.handle(segment);
         }
         return (price < this.MIN_PRICE) ? this.MIN_PRICE : price;
     }
 
     accept(driverId: String, date: Date){
-        if(this.status !== "requested") throw new Error("A corrida não foi solicitada");
         this.driverId = driverId;
-        this.status = "accepted";
+        this.status.accept();
         this.acceptDate = date;
     }
 
     start(date: Date){
-        if(this.status !== "accepted") throw new Error("A corrida não foi aceita");
-        this.status = "in_progress";
+        this.status.start();
         this.startDate = date
     }
 
     end(date: Date){
-        if(this.status !== "in_progress") throw new Error("A corrida não foi iniciada");
-        this.status = "finished";
+        this.status.end();
         this.endDate = date;
     }
 
