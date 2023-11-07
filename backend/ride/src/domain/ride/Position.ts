@@ -1,4 +1,4 @@
-import Coord from "../distancia/Coord";
+import Coord from "../distance/Coord";
 
 export default class Position{
     coord: Coord;
