@@ -1,7 +1,7 @@
 import NormalFareCalculator from "./NormalFareCalculator";
 import OvernighFareCalculator from "./OvernighFareCalculator";
 import OvernighSundayFareCalculator from "./OvernighSundayFareCalculator";
-import { Segment } from "../ride/Segment";
+import { Segment } from "../../ride/Segment";
 import SundayFareCalculator from "./SundayFareCalculator";
 
 export default class FareCalculatorFactory{
