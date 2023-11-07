@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import CreatePassenger from "./CreatePassenger.vue"
+import CreateDriver from "./CreateDriver.vue"
+
 </script>
 
 <template>
-  <div class="url">CCCAT Uber</div>
- </template>
+  <CreatePassenger></CreatePassenger>
+  <CreateDriver></CreateDriver>
+</template>
 
-<style scoped>
-</style>
+<style scoped></style>

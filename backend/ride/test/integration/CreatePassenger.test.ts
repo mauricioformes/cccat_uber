@@ -20,7 +20,7 @@ test("Deve cadastrar o passageiro", async function () {
 test("Não deve cadastrar o passageiro com email inválido", async function () {
     const input = {
         name: "Maurício Fomres - PASSAGEIRO",
-        email: "john.doe@gmail",
+        email: "mformes@gmail",
         document: "83432616074"
     };
     const connection = new PgPromiseAdapter();
