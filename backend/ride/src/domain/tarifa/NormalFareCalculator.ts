@@ -1,5 +1,5 @@
 import FareCalculator from "./FareCalculator";
-import { Segment } from "./Segment";
+import { Segment } from "../corrida/Segment";
 
 export default class NormalFareCalculator implements FareCalculator{
 

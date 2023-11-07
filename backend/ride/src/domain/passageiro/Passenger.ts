@@ -1,6 +1,6 @@
-import Cpf from "./Cpf";
-import Email from "./Email";
-import UUIDGenerator from "./UUIDGenerator";
+import Cpf from "../pessoa/Cpf";
+import Email from "../pessoa/Email";
+import UUIDGenerator from "../identidade/UUIDGenerator";
 export default class Passenger {
     document: Cpf;
     email: Email;

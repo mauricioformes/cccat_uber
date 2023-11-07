@@ -1,4 +1,4 @@
-import { Ride } from "../../domain/Ride";
+import { Ride } from "../../domain/corrida/Ride";
 
 export default class CalculateRide {
     constructor() {

@@ -1,5 +1,5 @@
-import DistanceCalculator from "./DistanceCalculator";
-import FareCalculatorFactory from "./FareCalculatorFactory";
+import DistanceCalculator from "../distancia/DistanceCalculator";
+import FareCalculatorFactory from "../tarifa/FareCalculatorFactory";
 import Position from "./Position";
 import { Segment } from "./Segment";
 

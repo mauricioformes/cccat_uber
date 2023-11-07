@@ -3,7 +3,7 @@ import CreateDriver from "../../src/application/usecase/CreateDriver";
 import GetDriver from "../../src/application/usecase/GetDriver";
 import DriverRespository from "../../src/application/repository/DriverRepository";
 import DriverRespositoryDatabase from "../../src/infra/repository/DriverRepositoryDatabase";
-import Driver from "../../src/domain/Driver";
+import Driver from "../../src/domain/motorista/Driver";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 
 test("Deve cadastrar o motorista", async function () {

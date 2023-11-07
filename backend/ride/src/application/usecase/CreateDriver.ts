@@ -1,4 +1,4 @@
-import Driver from "../../domain/Driver";
+import Driver from "../../domain/motorista/Driver";
 import DriverRespository from "../repository/DriverRepository";
 
 export default class CreateDriver {

@@ -1,8 +1,8 @@
 import FareCalculator from "./FareCalculator";
-import { Segment } from "./Segment";
+import { Segment } from "../corrida/Segment";
 
-export default class OvernighFareCalculator implements FareCalculator{
-    FARE = 3.9;
+export default class OvernighSundayFareCalculator implements FareCalculator{
+    FARE = 5;
     
     calculate(segment: Segment): number {
         return segment.distance * this.FARE;

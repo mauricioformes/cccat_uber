@@ -1,5 +1,5 @@
 import PassengerRepository from "../../application/repository/PassengerRepository";
-import Passenger from "../../domain/Passenger";
+import Passenger from "../../domain/passageiro/Passenger";
 import DatabaseConnection from "../database/DatabaseConnection";
 
 // Interface Adapters
