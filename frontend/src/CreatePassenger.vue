@@ -14,7 +14,7 @@ async function createPassenger() {
 </script>
 
 <template>
-  <div class="url">
+  <div>
     <input class="passenger-name" v-model="passenger.name" />
     <input class="passenger-email" v-model="passenger.email" />
     <input class="passenger-document" v-model="passenger.document" />
