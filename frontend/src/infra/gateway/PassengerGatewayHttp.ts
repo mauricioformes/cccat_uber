@@ -1,5 +1,6 @@
 import PassengerGateway from "./PassengerGateway";
 import HttpClient from "../http/HttpClient";
+import Passenger from "../domain/passenger/Passenger";
 
 export default class PassengerGatewayHttp implements PassengerGateway {
 
@@ -7,7 +8,8 @@ export default class PassengerGatewayHttp implements PassengerGateway {
 
     }
 
-    async save(passenger: any) {
-        return await this.httpClient.post("http://localhost:8000/passengers", passenger);
+    async save(passenger: Passenger) {
+        const passengerData = await this.httpClient.post("http://localhost:8000/passengers", passenger);
+        return passengerData.passengerId;
     }
 }

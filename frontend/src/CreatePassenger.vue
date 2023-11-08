@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { inject, ref } from 'vue';
 import PassengerGateway from './infra/gateway/PassengerGateway';
-import PassengerBuilder from './infra/domain/passenger/PassengerBuilder';
-
-const passenger = ref(new PassengerBuilder());
+import Passenger from './infra/domain/passenger/Passenger';
+const passenger = ref(new Passenger("", "", "", ""));
 const passengerId = ref("");
 
 const passengerGateway = inject("passengerGateway") as PassengerGateway;
 
 async function createPassenger() {
-  const output = await passengerGateway.save(passenger.value.build());
-  passengerId.value = output.passengerId;
+  passengerId.value = await passengerGateway.save(passenger.value);
+
 }
 </script>
 
