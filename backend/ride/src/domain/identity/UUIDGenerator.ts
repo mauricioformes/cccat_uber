@@ -1,4 +1,4 @@
-import crypt from "crypto";
+import crypto from "crypto";
 export default class UUIDGenerator {
 
     static create() {
