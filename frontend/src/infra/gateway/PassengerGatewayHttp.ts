@@ -9,7 +9,7 @@ export default class PassengerGatewayHttp implements PassengerGateway {
     }
 
     async save(passenger: Passenger) {
-        const passengerData = await this.httpClient.post("http://localhost:8000/passengers", passenger);
+        const passengerData = await this.httpClient.post("http://localhost:3000/passengers", passenger);
         return passengerData.passengerId;
     }
 }
