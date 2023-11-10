@@ -8,6 +8,6 @@ export default class DriverGatewayHttp implements DriverGateway {
     }
 
     async save(driver: any) {
-        return await this.httpClient.post("http://localhost:8000/drivers", driver);
+        return await this.httpClient.post("http://localhost:3000/drivers", driver);
     }
 }
