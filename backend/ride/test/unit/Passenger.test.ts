@@ -11,9 +11,9 @@ test("Deve criar um passageiro", function () {
 
 
 test("Não deve criar um passageiro com CPF inválido", function () {
-    expect(() => Passenger.create("Maurício Pires Formes", "john.doe@gmail.com", "83432616076")).toThrow(new Error("CPF Inválido"));
+    expect(() => Passenger.create("Maurício Pires Formes", "mformes@hotmail.com", "83432616076")).toThrow(new Error("CPF Inválido"));
 });
 
 test("Não deve criar um passageiro com email inválido", function () {
-    expect(() => Passenger.create("Maurício Pires Formes", "john.doe@gmail", "83432616074")).toThrow(new Error("Email Inválido"));
+    expect(() => Passenger.create("Maurício Pires Formes", "mformes@hotmail.com", "83432616074")).toThrow(new Error("Email Inválido"));
 });
