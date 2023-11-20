@@ -1,3 +1,5 @@
+import Passenger from "../domain/passenger/Passenger";
+
 export default interface PassengerGateway {
-    save(passenger: any): Promise<any>;
+    save(passenger: Passenger): Promise<string>;
 }
